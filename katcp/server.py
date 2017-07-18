@@ -27,6 +27,7 @@ from tornado.concurrent import Future as tornado_Future
 from tornado.concurrent import chain_future
 from tornado.util import ObjectDict
 from concurrent.futures import Future
+from future.utils import with_metaclass
 
 from .ioloop_manager import IOLoopManager, with_relative_timeout
 from .core import (DeviceServerMetaclass, Message, MessageParser,
@@ -912,7 +913,7 @@ class MessageHandlerThread(object):
         return self._running.wait(timeout)
 
 
-class DeviceServerBase(object):
+class DeviceServerBase(with_metaclass(DeviceServerMetaclass, object)):
     """Base class for device servers.
 
     Subclasses should add .request\_* methods for dealing
@@ -942,8 +943,6 @@ class DeviceServerBase(object):
         Logger to log messages to.
 
     """
-
-    __metaclass__ = DeviceServerMetaclass
 
     ## @brief Protocol versions and flags. Default to version 5, subclasses
     ## should override PROTOCOL_INFO

@@ -21,6 +21,7 @@ from tornado import gen
 from tornado.concurrent import Future as tornado_Future
 from tornado.util import ObjectDict
 from concurrent.futures import Future, TimeoutError
+from future.utils import with_metaclass
 
 from .core import (DeviceMetaclass, MessageParser, Message,
                    KatcpClientError, KatcpVersionError, KatcpClientDisconnected,
@@ -66,7 +67,7 @@ def make_threadsafe_blocking(meth):
     return meth
 
 
-class DeviceClient(object):
+class DeviceClient(with_metaclass(DeviceMetaclass, object)):
     """Device client proxy.
 
     Subclasses should implement .reply\_*, .inform\_* and
@@ -113,7 +114,6 @@ class DeviceClient(object):
     http://tornado.readthedocs.org/en/latest/netutil.html
 
     """
-    __metaclass__ = DeviceMetaclass
 
     MAX_MSG_SIZE = 2*1024*1024
     """Maximum message size that can be received in bytes.

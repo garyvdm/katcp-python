@@ -2112,7 +2112,7 @@ class DeviceServer(DeviceServerBase):
         exact, name_filter = construct_name_filter(msg.arguments[0]
                                                    if msg.arguments else None)
         sensors = [(name, sensor) for name, sensor in
-                   sorted(self._sensors.iteritems()) if name_filter(name)]
+                   sorted(self._sensors.items()) if name_filter(name)]
 
         if exact and not sensors:
             return req.make_reply("fail", "Unknown sensor name.")
@@ -2177,7 +2177,7 @@ class DeviceServer(DeviceServerBase):
         exact, name_filter = construct_name_filter(msg.arguments[0]
                                                    if msg.arguments else None)
         sensors = [(name, sensor) for name, sensor in
-                   sorted(self._sensors.iteritems()) if name_filter(name)]
+                   sorted(self._sensors.items()) if name_filter(name)]
 
         if exact and not sensors:
             return req.make_reply("fail", "Unknown sensor name.")

@@ -1036,7 +1036,7 @@ class ClientGroup(object):
             else:
                 self._req = AttrDict()
             for client in self.clients:
-                for name, request in dict.iteritems(client.req):
+                for name, request in client.req.items():
                     if name not in self._req:
                         self._req[name] = GroupRequest(self, name,
                                                        request.description)

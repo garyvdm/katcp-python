@@ -4,7 +4,6 @@ from __future__ import division, print_function, absolute_import
 
 # Python 2/3 compatibility stuff
 from builtins import str
-from past.utils import old_div
 from builtins import object
 #
 
@@ -13,7 +12,6 @@ import sys
 import re
 import collections
 import math
-import time
 
 import tornado
 
@@ -21,7 +19,7 @@ from functools import partial
 
 from concurrent.futures import Future
 from tornado.concurrent import Future as tornado_Future
-from tornado.gen import Return, maybe_future, with_timeout
+from tornado.gen import Return
 
 from katcp import resource, inspecting_client, Message
 from katcp.resource import KATCPReply, KATCPSensorError
@@ -33,8 +31,7 @@ from katcp.core import (AttrDict, DefaultAttrDict, AsyncCallbackEvent,
 # TODO NM 2017-04-13 Importing IOLoopThreadwrapper here for backwards
 # compatibility, user code should be changed to import it from the more logical
 # katcp.ioloop_manager module.
-from katcp.ioloop_manager import (ThreadSafeMethodAttrWrapper,
-                                  IOLoopThreadWrapper)
+from katcp.ioloop_manager import (ThreadSafeMethodAttrWrapper)
 
 log = logging.getLogger(__name__)
 

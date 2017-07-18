@@ -31,7 +31,6 @@ from .core import (Sensor,
                    Message,
                    AsyncReply,
                    AsyncEvent,
-                   AttrDict,
                    steal_docstring_from,
                    ProtocolFlags)
 from .server import DeviceServer, FailReply, ClientConnection

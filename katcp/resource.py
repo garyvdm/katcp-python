@@ -14,8 +14,7 @@ from tornado.gen import Return, with_timeout
 from tornado.concurrent import Future
 
 from katcp import Message, Sensor
-from katcp.core import hashable_identity, AttrDict
-from katcp.sampling import SampleStrategy
+from katcp.core import hashable_identity
 
 
 logger = logging.getLogger(__name__)

@@ -11,7 +11,6 @@ from __future__ import division, print_function, absolute_import
 import unittest2 as unittest
 import sys
 import socket
-import errno
 import time
 import logging
 

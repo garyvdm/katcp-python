@@ -9,13 +9,9 @@
 
 from __future__ import division, print_function, absolute_import
 
-import unittest2 as unittest
 import threading
-import time
 import logging
-import katcp
-import mock
-import Queue
+
 import tornado.testing
 import concurrent.futures
 

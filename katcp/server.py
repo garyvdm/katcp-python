@@ -21,7 +21,6 @@ import tornado.tcpserver
 
 from functools import partial, wraps
 from collections import deque
-from thread import get_ident as get_thread_ident
 
 from tornado import gen, iostream
 from tornado.concurrent import Future as tornado_Future
@@ -40,6 +39,7 @@ from .kattypes import (request, return_reply,
                        minimum_katcp_version,
                        has_katcp_protocol_flags,
                        Int, Str)
+from .utils import get_thread_ident
 
 # 'import katcp' so that we can use katcp.__version__ later
 # we cannot do this: 'from . import __version__' because __version__

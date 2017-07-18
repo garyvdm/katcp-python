@@ -16,7 +16,6 @@ import tornado.tcpclient
 import tornado.iostream
 
 from functools import partial, wraps
-from thread import get_ident as get_thread_ident
 
 from tornado import gen
 from tornado.concurrent import Future as tornado_Future
@@ -28,6 +27,7 @@ from .core import (DeviceMetaclass, MessageParser, Message,
                    ProtocolFlags, AsyncEvent, until_later, LatencyTimer,
                    SEC_TS_KATCP_MAJOR, FLOAT_TS_KATCP_MAJOR, SEC_TO_MS_FAC)
 from .ioloop_manager import IOLoopManager
+from .utils import get_thread_ident
 
 
 # logging.basicConfig(level=logging.DEBUG)

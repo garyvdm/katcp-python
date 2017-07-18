@@ -21,8 +21,6 @@ import tornado.ioloop
 import tornado.locks
 import tornado.gen
 
-from thread import get_ident
-
 from tornado.concurrent import Future as tornado_Future
 from concurrent.futures import Future, TimeoutError
 
@@ -43,6 +41,7 @@ from .kattypes import (request,
                        concurrent_reply,
                        request_timeout_hint)
 from .object_proxies import ObjectWrapper
+from .utils import get_thread_ident
 
 logger = logging.getLogger(__name__)
 
@@ -1997,7 +1996,7 @@ class TimewarpAsyncTestCase(tornado.testing.AsyncTestCase):
         self.ioloop_time = 0
         ioloop.time = lambda: self.ioloop_time
         def set_ioloop_thread_id():
-            self.ioloop_thread_id = get_ident()
+            self.ioloop_thread_id = get_thread_ident()
         ioloop.add_callback(set_ioloop_thread_id)
         return ioloop
 

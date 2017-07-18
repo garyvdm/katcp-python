@@ -19,10 +19,10 @@ import Queue
 import tornado.testing
 import concurrent.futures
 
-from thread import get_ident
 from tornado import gen
 from katcp import sampling, Sensor
 from katcp.testutils import (TestLogHandler, DeviceTestSensor, TimewarpAsyncTestCase)
+from katcp.utils import get_thread_ident
 
 log_handler = TestLogHandler()
 logging.getLogger("katcp").addHandler(log_handler)
@@ -41,7 +41,7 @@ class TestSampling(TimewarpAsyncTestCase):
                 timestamp=self.ioloop_time, status=Sensor.NOMINAL, value=3)
         # test callback
         def inform(sensor, reading):
-            assert get_ident() == self.ioloop_thread_id, (
+            assert get_thread_ident() == self.ioloop_thread_id, (
                 "inform must be called from in the ioloop")
             self.calls.append((sensor, reading))
 

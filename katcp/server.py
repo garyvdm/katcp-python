@@ -792,9 +792,9 @@ class MessageHandlerThread(object):
     def __init__(self, handler, log_inform_formatter, logger=log):
         self.handler = handler
         try:
-            owner = handler.im_self.name
+            owner = handler.__self__.name
         except AttributeError:
-            owner = handler.im_self.__class__.__name__
+            owner = handler.__self__.__class__.__name__
         self.name = "{}.message_handler" .format(owner)
         self.log_inform_formatter = log_inform_formatter
         self._wake = threading.Event()

@@ -438,7 +438,7 @@ class DeviceClient(object):
                 self._logger.warn("Reconnected to {0}"
                                   .format(self.bind_address_string))
             self._connect_failures = 0
-        except Exception, e:
+        except Exception as e:
             if self._connect_failures % 5 == 0:
                 # warn on every fifth failure
 
@@ -663,7 +663,7 @@ class DeviceClient(object):
                     # before we could get back to this finally clause. This would result
                     # in us stopping the new ioloop. D'oh!
                     self.ioloop.add_callback(self.stop)
-            except RuntimeError, e:
+            except RuntimeError as e:
                 if str(e) == 'IOLoop is closing':
                     # Seems the ioloop was stopped already, no worries.
                     self._running.clear()
@@ -1191,7 +1191,7 @@ class AsyncClient(DeviceClient):
 
         try:
             self.send_request(msg)
-        except KatcpClientError, e:
+        except KatcpClientError as e:
             error_reply = Message.request(msg.name, "fail", str(e))
             error_reply.mid = mid
             self.handle_reply(error_reply)
